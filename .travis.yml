@@ -21,4 +21,4 @@ after_success:
 - docker push flyingraptor/multi-client
 - docker push flyingraptor/multi-nginx
 - docker push flyingraptor/multi-server
-- docker push flyingraptor/multi-worker
+- docker push flyingraptor/multi-worker 
