@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t flyingraptor/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run flyingraptor/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t flyingraptor/multi-client ./client
+  - docker build -t flyingraptor/multi-nginx ./nginx
+  - docker build -t flyingraptor/multi-server ./server
+  - docker build -t flyingraptor/multi-worker ./worker
+
+# Login to docker cli
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+# Push images to docker hub
+- docker push flyingraptor/multi-client
+- docker push flyingraptor/multi-nginx
+- docker push flyingraptor/multi-server
+- docker push flyingraptor/multi-worker
