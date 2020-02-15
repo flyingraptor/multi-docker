@@ -6,21 +6,21 @@
       "image": "flyingraptor/multi-client",
       "hostname": "client",
       "essential": false,
-      "memory": 128
+      "memory": 512
     },
     {
       "name": "server",
       "image": "flyingraptor/multi-server",
       "hostname": "api",
       "essential": false,
-      "memory": 128
+      "memory": 512
     },
     {
       "name": "worker",
       "image": "flyingraptor/multi-worker",
       "hostname": "worker",
       "essential": false,
-      "memory": 128
+      "memory": 512
     },
     {
       "name": "nginx",
@@ -33,7 +33,7 @@
         }
       ],
       "links": ["client", "server"],
-      "memory": 128
+      "memory": 512
     }
   ]
 }
