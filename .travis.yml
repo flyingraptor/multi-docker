@@ -22,3 +22,16 @@ after_success:
  - docker push flyingraptor/multi-nginx
  - docker push flyingraptor/multi-server
  - docker push flyingraptor/multi-worker
+
+deploy:
+ provider: elasticbeasnstalk
+ region: us-east-2
+ app: multi-docker
+ env: MultiDocker-env
+ bucket_name: elasticbeanstalk-us-east-2-924231772658
+ bucket_path: docker-multi
+ on:
+   branch: master
+ access:key_id: $AWS_ACCESS_KEY
+ secret_access_key:
+   secure: $AWS_SECRET_KEY
